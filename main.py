@@ -20,12 +20,7 @@ from smtp_sender import open_connection, render_row, send_one
 # CONFIG
 # ---------------------------------------------------------------------------
 
-ALLOWED_ORIGINS = [
-    o.strip() for o in os.environ.get(
-        "ALLOWED_ORIGINS",
-        "*",
-    ).split(",") if o.strip()
-]
+
 
 MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024
 MAX_ROWS = 1000
@@ -78,7 +73,7 @@ app = FastAPI(title="MailBlast", version="2.1.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
